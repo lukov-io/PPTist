@@ -20,8 +20,9 @@ import cn from '@/locales/cn.json'
 import en from '@/locales/en.json'
 
 const app = createApp(App)
+const currentLocale = localStorage.getItem('locale') || 'en'
 const i18n = createI18n({
-  locale: 'en', // set locale
+  locale: currentLocale, // set locale
   fallbackLocale: 'en',
   legacy: false,
   messages: {

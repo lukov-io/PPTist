@@ -1,8 +1,4 @@
 <template>
-  <select v-model="locale">
-    <option value="cn">CN</option>
-    <option value="en">en</option>
-  </select>
   <Screen v-if="screening" />
   <Editor v-else-if="_isPC" />
   <Mobile v-else />
@@ -16,8 +12,6 @@ import { useScreenStore, useMainStore, useSnapshotStore } from '@/store'
 import { LOCALSTORAGE_KEY_DISCARDED_DB } from '@/configs/storage'
 import { deleteDiscardedDB } from '@/utils/database'
 import { isPC } from './utils/common'
-import usei18n from '@/hooks/usei18n'
-const {t, locale} = usei18n()
 import Editor from './views/Editor/index.vue'
 import Screen from './views/Screen/index.vue'
 import Mobile from './views/Mobile/index.vue'

@@ -1,12 +1,12 @@
 <template>
   <div class="remark">
-    <div 
+    <div
       class="resize-handler"
       @mousedown="$event => resize($event)"
     ></div>
     <textarea
       :value="remark"
-      placeholder="点击输入演讲者备注"
+      :placeholder="t('remark.placeholder')"
       @input="$event => handleInput($event)"
     ></textarea>
   </div>
@@ -16,7 +16,9 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useSlidesStore } from '@/store'
+import usei18n from '@/hooks/usei18n'
 
+const {t} = usei18n()
 const props = defineProps({
   height: {
     type: Number,

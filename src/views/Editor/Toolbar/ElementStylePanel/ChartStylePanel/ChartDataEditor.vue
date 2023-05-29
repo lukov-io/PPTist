@@ -2,21 +2,21 @@
   <div class="chart-data-editor">
     <div class="editor-content">
       <div class="range-box">
-        <div 
-          class="temp-range" 
+        <div
+          class="temp-range"
           :style="{
             width: tempRangeSize.width + 'px',
             height: tempRangeSize.height + 'px',
           }"
         ></div>
-        <div 
-          :class="['range-line', line.type]" 
-          v-for="line in rangeLines" 
-          :key="line.type" 
+        <div
+          :class="['range-line', line.type]"
+          v-for="line in rangeLines"
+          :key="line.type"
           :style="line.style"
         ></div>
-        <div 
-          class="resizable" 
+        <div
+          class="resizable"
           :style="resizablePointStyle"
           @mousedown.stop="changeSelectRange($event)"
         ></div>
@@ -24,12 +24,12 @@
       <table>
         <tbody>
           <tr v-for="rowIndex in 31" :key="rowIndex">
-            <td 
-              v-for="colIndex in 7" 
-              :key="colIndex" 
+            <td
+              v-for="colIndex in 7"
+              :key="colIndex"
               :class="{ 'head': (colIndex === 1 && rowIndex <= selectedRange[1]) || (rowIndex === 1 && colIndex <= selectedRange[0]) }"
             >
-              <input 
+              <input
                 :class="['item', { 'selected': rowIndex <= selectedRange[1] && colIndex <= selectedRange[0] }]"
                 :id="`cell-${rowIndex - 1}-${colIndex - 1}`"
                 autocomplete="off"
@@ -44,11 +44,11 @@
 
     <div class="btns">
       <div class="left">
-        <Button class="btn" @click="clear()">清空</Button>
+        <Button class="btn" @click="clear()">{{t('chartData.clear')}}</Button>
       </div>
       <div class="right">
-        <Button class="btn" @click="closeEditor()">取消</Button>
-        <Button type="primary" class="btn" @click="getTableData()" style="margin-left: 10px;">确认</Button>
+        <Button class="btn" @click="closeEditor()">{{t('common.cancel')}}</Button>
+        <Button type="primary" class="btn" @click="getTableData()" style="margin-left: 10px;">{{t('common.confirm')}}</Button>
       </div>
     </div>
   </div>
@@ -61,7 +61,9 @@ import { KEYS } from '@/configs/hotkey'
 import { pasteCustomClipboardString, pasteExcelClipboardString } from '@/utils/clipboard'
 
 import { Button, Input } from 'ant-design-vue'
+import usei18n from '@/hooks/usei18n'
 
+const {t} = usei18n()
 const props = defineProps({
   data: {
     type: Object as PropType<ChartData>,
@@ -212,7 +214,7 @@ const handlePaste = (e: ClipboardEvent, rowIndex: number, colIndex: number) => {
     clipboardDataFirstItem.getAsString(text => {
       const clipboardData = pasteCustomClipboardString(text)
       if (typeof clipboardData === 'object') return
- 
+
       const excelData = pasteExcelClipboardString(text)
       if (excelData) {
         const maxRow = rowIndex + excelData.length

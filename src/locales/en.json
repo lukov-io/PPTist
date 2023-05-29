@@ -34,6 +34,7 @@
     "showSlides": "Run",
     "fromStart": "From start",
     "fromCurrent": "From the current slide",
+    "changeLocale": "Language",
     "help": "Help",
     "feedback": "Feedback",
     "QA": "Q&A",
@@ -431,6 +432,12 @@
     "group": "Group",
     "unGroup": "Ungroup"
   },
+  "chartData": {
+    "clear": "Clear"
+  },
+  "remark": {
+    "placeholder": "Click to add speaker notes"
+  },
   "export": {
     "isExporting": "Exporting...",
     "customize": "Custom",
@@ -467,3 +474,4 @@
     }
   }
 }
+
